@@ -1,2 +1,2 @@
 # smasher
-Web Automation App With Simple Script
+Web Automation Desktop App With Simple Script
