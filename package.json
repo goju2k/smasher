@@ -1,0 +1,16 @@
+{
+  "name": "smasher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "app": "electron --trace-warnings .",
+    "dev": "cd webapp & npm run serve",
+    "buildweb": "cd webapp & npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^16.0.2"
+  }
+}
