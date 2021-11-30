@@ -11,12 +11,13 @@ const functions = {
         workers.length = 0
 
         const cnt = arg.cnt
+        const accountList = arg.accountList
         const scriptName = arg.scriptName
 
         const scriptInfo = require('../../appscript/'+scriptName)
 
-        for(let i = 0 ; i < cnt ; i++){
-            workers.push(new Worker(scriptInfo))
+        for(let account of accountList){
+            workers.push(new Worker(scriptInfo, account))
         }
 
         console.log(cnt + ' workers created')
@@ -72,8 +73,20 @@ module.exports = function(){
         }
     })
 
-    win.loadURL('http://localhost:8080');
-    //win.loadFile('./webapp/dist/index.html')
+    let port;
+    process.argv.forEach((arg)=> {
+        if (!isNaN(Number(arg))) {
+            port = Number(arg);
+            return false;
+        }
+    })
+
+    if (port && port > 0) {
+        win.loadURL('http://localhost:'+port);
+    } else {
+        win.loadFile('./webapp/dist/index.html')
+    }
+
     win.once('ready-to-show', () => {
 
         win.show()

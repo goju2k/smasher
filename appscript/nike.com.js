@@ -8,10 +8,10 @@ module.exports = {
             timeAfter:1000,
         },
         {
-            code:'document.getElementById("j_username").value="goju2k";',
+            code:"`document.getElementById('j_username').value='${id}';`",
         },
         {
-            code:'document.getElementById("j_password").value="rhwndud22@@";',
+            code:"`document.getElementById('j_password').value='${pass}';`",
         },
         {
             code:'document.querySelector(\'div.login_btn_line div button\').click()',
@@ -22,7 +22,7 @@ module.exports = {
 
         //사이즈선택
         {
-            code:'document.querySelector(\'span.input-radio[typename="260"] input\').click()',
+            code:"`document.querySelector('span.input-radio[typename=\"${size}\"] input').click()`",
         },
         //바로구매
         {

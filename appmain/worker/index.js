@@ -2,10 +2,13 @@ const {BrowserWindow} = require('electron')
 
 class SmashWorker {
 
-    constructor(scriptInfo){
+    constructor(scriptInfo, account){
 
         //시나리오 저장
         this.scriptInfo = scriptInfo
+
+        //계정정보 저장
+        this.account = account
         
         //윈도우 생성
         this.win = new BrowserWindow({
@@ -26,12 +29,17 @@ class SmashWorker {
         //window show
         this.win.once('ready-to-show', () => {
             this.win.show()
-            this.init()
         })
 
         //page load 이벤트
         this.wc.on('did-finish-load', (e)=>{
             console.log('did-finish-load => ', e.sender.getURL())
+
+            if (this.prcsInit === false) {
+                this.init()
+                this.prcsInit = true;
+            }
+            
             if(this.reserveNext !== undefined){
                 const nextIdx = this.reserveNext + 1;
                 this.reserveNext = undefined
@@ -40,6 +48,7 @@ class SmashWorker {
         })
 
         //시나리오 play 변수
+        this.prcsInit = false;
         this.currType;
         this.currItem;
         this.reserveNext;
@@ -66,9 +75,15 @@ class SmashWorker {
             return
         }
     
-        console.log('scriptInfo playing at index:'+idx, this.currItem.code)
+        console.log('scriptInfo playing at index:' + idx, this.currItem.code)
+        
+        const id = this.account.id
+        const pass = this.account.pass
+        const size = this.account.size
     
-        const result = await this.wc.executeJavaScript(this.currItem.code)
+        const result = await this.wc.executeJavaScript(
+            this.currItem.code.indexOf('${') >= 0 ? eval(this.currItem.code) : this.currItem.code
+        )
     
         console.log('result '+idx, result)
     
