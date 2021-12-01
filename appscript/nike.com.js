@@ -1,5 +1,6 @@
 module.exports = {
-    home:'https://www.nike.com/kr/ko_kr/t/men/fw/basketball/DC6515-100/wpei95/air-jordan-1-retro-high-og',
+    //home:'https://www.nike.com/kr/ko_kr/t/men/fw/basketball/DC6515-100/wpei95/air-jordan-1-retro-high-og',
+    home:'https://www.nike.com/kr/ko_kr/t/women/fw/nike-sportswear/DD1873-100/ddtu38/w-nike-dunk-low-next-nature',
     init:[
 
         //로그인
@@ -22,7 +23,8 @@ module.exports = {
 
         //사이즈선택
         {
-            code:"`document.querySelector('span.input-radio[typename=\"${size}\"] input').click()`",
+            //code:"`document.querySelector('span.input-radio[typename=\"${size}\"] input').click()`",
+            code:'for(let elem of document.querySelectorAll("span.input-radio input")){ if(elem.disabled==\'disabled\') continue;  elem.click(); break; }' //any size
         },
         //바로구매
         {

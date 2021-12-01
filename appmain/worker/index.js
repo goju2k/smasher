@@ -1,4 +1,4 @@
-const {BrowserWindow} = require('electron')
+const {BrowserView, BrowserWindow} = require('electron')
 
 class SmashWorker {
 
@@ -11,8 +11,10 @@ class SmashWorker {
         this.account = account
         
         //윈도우 생성
+        const width = 1800;
+        const height = 900;
         this.win = new BrowserWindow({
-            width: 1280, height: 960,
+            width: width, height: height,
             //minWidth: 360, minHeight: 286,
             title:"SMASHER WORKER",
             show: false,
@@ -21,6 +23,25 @@ class SmashWorker {
                 partition: 'partition:'+new Date().getTime()
             }
         })
+
+        //탭 띄우기
+        // let xcnt = 10;
+        // let ycnt = 10;
+
+        // let viewWidth = (width / xcnt)
+        // let viewHeight = (height / ycnt)
+        // for (let i = 0; i < xcnt; i++){
+
+        //     for (let k = 0; k < ycnt; k++) {
+
+        //         let view = new BrowserView()
+        //         this.win.addBrowserView(view)
+        //         view.setBounds({ x: viewWidth*i, y: viewHeight*k, width: viewWidth, height: viewHeight })
+        //         view.webContents.loadURL(this.scriptInfo.home)
+
+        //     }
+            
+        // }
 
         this.wc = this.win.webContents;
 
@@ -36,7 +57,7 @@ class SmashWorker {
             console.log('did-finish-load => ', e.sender.getURL())
 
             if (this.prcsInit === false) {
-                this.init()
+                //this.init()
                 this.prcsInit = true;
             }
             
