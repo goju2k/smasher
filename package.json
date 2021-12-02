@@ -6,11 +6,41 @@
   "scripts": {
     "app": "electron --trace-warnings .",
     "dev": "cd webapp & npm run serve",
-    "buildweb": "cd webapp & npm run build"
+    "buildweb": "cd webapp & npm run build",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "smasher-2021",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "appmain/**/*",
+      "appscript/**/*",
+      "main.js",
+      "preload.js",
+      "webapp/dist/**/*"
+    ],
+    "extraResources": [
+      "icon_win.ico"
+    ],
+    "asar": true,
+    "win": {
+      "icon": "icon_win.ico"
+    },
+    "nsis": {
+      "artifactName": "${productName}_setup.${ext}",
+      "installerIcon": "icon_win.ico",
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false
+    }
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "electron": "^16.0.2"
+  "devDependencies": {
+    "electron": "^16.0.2",
+    "electron-builder": "^22.14.5"
   }
 }
