@@ -57,7 +57,7 @@ class SmashWorker {
             console.log('did-finish-load => ', e.sender.getURL())
 
             if (this.prcsInit === false) {
-                //this.init()
+                this.init()
                 this.prcsInit = true;
             }
             
