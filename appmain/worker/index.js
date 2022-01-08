@@ -11,8 +11,8 @@ class SmashWorker {
         this.account = account
         
         //윈도우 생성
-        const width = 1800;
-        const height = 900;
+        const width = 1200;
+        const height = 800;
         this.win = new BrowserWindow({
             width: width, height: height,
             //minWidth: 360, minHeight: 286,
@@ -83,7 +83,10 @@ class SmashWorker {
 
     async play(){
         this.currType = 'play'
-        this.playMain(undefined)
+        this.win.loadURL(this.scriptInfo.target)
+        this.wc.once('did-finish-load', (e)=>{
+            this.playMain(undefined)
+        })
     }
 
     async playMain(idx){

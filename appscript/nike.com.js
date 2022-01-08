@@ -1,6 +1,7 @@
 module.exports = {
-    //home:'https://www.nike.com/kr/ko_kr/t/men/fw/basketball/DC6515-100/wpei95/air-jordan-1-retro-high-og',
-    home:'https://www.nike.com/kr/ko_kr/t/women/fw/nike-sportswear/DD1873-100/ddtu38/w-nike-dunk-low-next-nature',
+    home:'https://www.nike.com/kr/ko_kr/',
+    //target:'https://www.nike.com/kr/launch/t/junior/fw/young-athletes/DC9561-400/ibtb94/nike-dunk-low-se-gs',
+    target:'https://www.nike.com/kr/launch/t/women/fw/nike-sportswear/DO2154-010/sylq71/w-air-max-90-se',
     init:[
 
         //로그인
@@ -21,10 +22,16 @@ module.exports = {
     ],
     play:[
 
-        //사이즈선택
+        //사이즈선택1
         {
-            //code:"`document.querySelector('span.input-radio[typename=\"${size}\"] input').click()`",
-            code:'for(let elem of document.querySelectorAll("span.input-radio input")){ if(elem.disabled==\'disabled\') continue;  elem.click(); break; }' //any size
+            code:'document.querySelector("a.select-head").click()',
+            timeAfter:500,
+        },
+        //사이즈선택2
+        {
+            code:`document.querySelector('ul.select-body li.list a[data-value="28"]').click()`
+            //code:"`document.querySelector('#selectSize option[data-value=\"${size}\"]').click()`",
+            //code:'for(let elem of document.querySelectorAll("#selectSize option")){ if(elem.disabled==\'disabled\') continue;  elem.click(); break; }' //any size
         },
         //바로구매
         {
@@ -34,6 +41,24 @@ module.exports = {
         //결제
         {
             code:'document.querySelector("div.footer div.uk-grid span button").click()',
+            eventAfter:'did-finish-load',
+        },
+        //결제수단 - 카카오페이 선택
+        {
+            code:'document.querySelector("h6.payment-method-item-title").click()',
+        },
+        //주문 동의
+        {
+            code:`document.querySelector("label[for='isCheckoutAgree']").click()`,
+            timeAfter:2000,
+        },
+        //결제하기
+        {
+            code:`document.querySelector('button[data-checkout-btn="payment"]').click()`,
+            timeAfter:1000,
+        },
+        {
+            code:`document.querySelector('button[data-checkout-btn="payment"]').click()`
         }
 
     ]
